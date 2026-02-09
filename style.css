@@ -46,6 +46,7 @@ body{
 
 h1{
     font-size: 2rem;
+    text-align: center;
 }
 
 .choices{
@@ -67,6 +68,8 @@ button{
     transition: background-color ease 0.2s, transform ease 0.2s;
 }
 
+
+
 button:hover,
 button:focus{
     transform: scale(1.1);
@@ -84,8 +87,54 @@ button:focus{
     color: white;
 }
 
+@media (max-width: 768px) {
+    body{
+        padding: 0.5rem;
+    }
+    
+    .main-window{
+        padding: 1.5rem 1rem;
+        min-height: auto;
+    }
+    
+    .banner{
+        height: 12rem;
+    }
+    
+    h1{
+        font-size: 1.5rem;
+    }
+    
+    .choices{
+        gap: 1.5rem;
+    }
+    
+    button{
+        font-size: 1.75rem;
+        padding: 0.4rem 1.5rem;
+    }
+}
 
-
-.hide{
-    display: none;
+@media (max-width: 480px) {
+    .main-window{
+        padding: 1rem 0.75rem;
+    }
+    
+    .banner{
+        height: 10rem;
+    }
+    
+    h1{
+        font-size: 1.25rem;
+    }
+    
+    .choices{
+        gap: 1rem;
+    }
+    
+    button{
+        font-size: 1.5rem;
+        padding: 0.5rem 1rem;
+        width: 100%;
+    }
 }

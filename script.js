@@ -16,10 +16,14 @@ const images = {
 let isClicked = false; // Track if a button was clicked
 let noClickCount = 0;
 
+// No button text cycle
+const noButtonTexts = ['Seriously?', 'click Yes please', 'please be my valentine?', 'pleaseeeee'];
+
 // No button interactions
 noButton.addEventListener('mouseover', () => {
     if (!isClicked) {
         bannerImage.src = images.noHover;
+        noButton.textContent = "No!!";
     }
 });
 
@@ -29,32 +33,43 @@ noButton.addEventListener('mouseout', () => {
     }
 });
 
-noButton.addEventListener('click', () => {
+noButton.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent document click from triggering
     bannerImage.src = images.noClick;
     isClicked = true;
 
-    noClickCount++;
-    const newSize = 2.25+ (noClickCount*0.5);
-    yesButton.style.fontSize= `${newSize}rem`;
+    // Cycle through no button texts
+    noButton.textContent = noButtonTexts[noClickCount % noButtonTexts.length];
 
-    noButton.textContent = "Seriously?";
+    // Increase yes button size
+    const newYesSize = 2.25 + (noClickCount * 0.5);
+    yesButton.style.fontSize = `${newYesSize}rem`;
+
+    // Decrease no button size
+    const newNoSize = Math.max(1, 2.25 - (noClickCount * 0.2)); // Min size of 1rem
+    noButton.style.fontSize = `${newNoSize}rem`;
+
+    noClickCount++;
 });
 
 // Yes button interactions
 yesButton.addEventListener('mouseover', () => {
     if (!isClicked) {
         bannerImage.src = images.yesHover;
+        noButton.textContent = "yessss click it";
     }
 });
 
 yesButton.addEventListener('mouseout', () => {
     if (!isClicked) {
         bannerImage.src = images.init;
+        noButton.textContent = "go back and click Yes!"
     }
 });
 
-yesButton.addEventListener('click', () => {
-    heading.innerHTML= "Yaay! Knew you'd say yes <3 <br> See you soon!!";
+yesButton.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent document click from triggering
+    heading.innerHTML = "Yayyy! I knew you'd say yes! Love youuu 🧡<br>Happy Valentine's Day 💕";
     bannerImage.src = images.yesClick;
     isClicked = true;
 });
@@ -63,12 +78,17 @@ yesButton.addEventListener('click', () => {
 document.addEventListener('click', (event) => {
     // Check if click is outside both buttons
     if (!noButton.contains(event.target) && !yesButton.contains(event.target)) {
-        bannerImage.src = images.init;
-        isClicked = false;
-
-        noClickCount = 0;
-        yesButton.style.fontSize='';
-        heading.textContent = "Will you be my Valentine?";
-        noButton.textContent = "No"
+        resetEverything();
     }
 });
+
+// Reset function
+function resetEverything() {
+    bannerImage.src = images.init;
+    isClicked = false;
+    noClickCount = 0;
+    yesButton.style.fontSize = '';
+    noButton.style.fontSize = '';
+    heading.textContent = "Will you be my Valentine?";
+    noButton.textContent = "No";
+}
