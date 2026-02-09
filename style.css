@@ -1,0 +1,91 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0;
+    margin:auto;
+    min-height: 100vh;
+    background-color: #F5B6BF;
+    font-family: "Life Savers", serif;
+}
+
+.main-window{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FEEFE8;
+    border:0.125rem solid black;
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    box-shadow: 0.25rem 0.25rem 1rem #FA6C84;
+    max-width: 28rem;
+    min-height: 37rem;
+}
+
+.banner{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 1.25rem; /* ← ADDED */
+    overflow: hidden; /* ← ADDED */
+    box-shadow: inset 0.25rem 0.25rem 1rem rgba(20, 20, 0);
+    height:15rem;
+}
+
+.banner-image{
+    width:100%;
+    height:100%;
+    display: block;
+    object-fit: cover;
+}
+
+h1{
+    font-size: 2rem;
+}
+
+.choices{
+    display: flex;
+    justify-content: space-between;
+    gap: 2.5rem;
+}
+
+button{
+    cursor: pointer;
+    font-family: "Life Savers", serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    text-align: center;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    box-shadow: 0.35rem 0.35rem  #ddcbc3;
+    transition: background-color ease 0.2s, transform ease 0.2s;
+}
+
+button:hover,
+button:focus{
+    transform: scale(1.1);
+}
+
+.no:hover,
+.no:focus{
+    background-color: red;
+    color: white;
+}
+
+.yes:hover,
+.yes:focus{
+    background-color: #44ba5d;
+    color: white;
+}
+
+
+
+.hide{
+    display: none;
+}
